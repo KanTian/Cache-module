@@ -30,12 +30,15 @@
 #include "tm_queue.h"
 #include "tmcache.h"
 
+//调试之用
 unsigned short g_is_debug = IS_DEBUG;
 unsigned short g_is_daemon = IS_DAEMON;
 unsigned int g_port = PORT;
+//最大客户端数目
 unsigned int g_max_client = MAX_CLIENTS;
+//最大内存size
 unsigned int g_max_mem_size = MAX_MEM_SIZE;
-
+//最大表size
 unsigned int g_max_tablesize = MAX_TABLE_SIZE;
 
 static struct tm_hash_t *g_htable;
@@ -50,24 +53,24 @@ void print_status(){
 	status = g_status;
 	visit_total = status->visit_add + status->visit_del + status->visit_get;
 
-sprintf(buf, "=============Status===============\n\
-STAT version %s\r\n\
-STAT pid %d\r\n\
-STAT start_time %d\r\n\
-STAT run_time %d\r\n\
-STAT mem_total %d\r\n\
-STAT mem_used %d\r\n\
-STAT item_total %d\r\n\
-STAT visit_total %d\r\n\
-STAT visit_add %d\r\n\
-STAT visit_del %d\r\n\
-STAT visit_get %d\r\n\
-===============END================\n", 
-status->version, status->pid, status->start_time, status->run_time, 
-status->mem_total, status->mem_used, status->item_total, 
-visit_total, status->visit_add, status->visit_del, status->visit_get);
+	sprintf(buf, "=============Status===============\n\
+	STAT version %s\r\n\
+	STAT pid %d\r\n\
+	STAT start_time %d\r\n\
+	STAT run_time %d\r\n\
+	STAT mem_total %d\r\n\
+	STAT mem_used %d\r\n\
+	STAT item_total %d\r\n\
+	STAT visit_total %d\r\n\
+	STAT visit_add %d\r\n\
+	STAT visit_del %d\r\n\
+	STAT visit_get %d\r\n\
+	===============END================\n", 
+	status->version, status->pid, status->start_time, status->run_time, 
+	status->mem_total, status->mem_used, status->item_total, 
+	visit_total, status->visit_add, status->visit_del, status->visit_get);
 
-		printf("%s", buf);
+	printf("%s", buf);
 }
 
 void init_status(unsigned max_mimsize){
